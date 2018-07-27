@@ -89,11 +89,13 @@ class AddBlock implements ObserverInterface
                     $content = $layout->createBlock($this->productType->getBlockMap($slider->getProductType()))
                         ->setSlider($slider)
                         ->toHtml();
-
-                    if (strpos($location, 'top') !== false) {
-                        $output = "<div id=\"mageplaza-productslider-block-before-{$type}-{$slider->getId()}\">$content</div>" . $output;
-                    } else {
-                        $output .= "<div id=\"mageplaza-productslider-block-after-{$type}-{$slider->getId()}\">$content</div>";
+                    
+                    if (strpos($location, $type)!== false) {
+                        if (strpos($location, 'top') !== false) {
+                            $output = "<div id=\"mageplaza-productslider-block-before-{$type}-{$slider->getId()}\">$content</div>" . $output;
+                        } else {
+                            $output .= "<div id=\"mageplaza-productslider-block-after-{$type}-{$slider->getId()}\">$content</div>";
+                        }
                     }
                 }
             }
